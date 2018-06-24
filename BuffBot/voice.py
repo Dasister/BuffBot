@@ -112,13 +112,13 @@ class Voice:
     async def add_to_queue(self, ctx, link):
         # TODO: find better solution for extracting link from message
         if "&list=" in link:
-            self.bot.say("Fuck off with fucking playlist!")
+            await self.bot.say("Fuck off with fucking playlist!")
             return
         song = link
         # link added to next field in current song
         self.playlist.add_song(song)
         self.database.add_music_to_db(song)
-        if not self.music_server :
+        if not self.music_server:
             self.music_server = self.get_or_take_member_channel(ctx)
         if self.seconds_to_next <= 0:
             self.people_voted.clear()
