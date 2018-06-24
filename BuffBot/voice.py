@@ -111,6 +111,9 @@ class Voice:
     @commands.command(name="queue", pass_context=True, help="Add youtube link to music queue")
     async def add_to_queue(self, ctx, link):
         # TODO: find better solution for extracting link from message
+        if "&list=" in link:
+            self.bot.say("Fuck off with fucking playlist!")
+            return
         song = link
         # link added to next field in current song
         self.playlist.add_song(song)
