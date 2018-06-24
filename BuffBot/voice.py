@@ -142,16 +142,16 @@ class Voice:
         self.music_server = self.get_or_take_member_channel(ctx)
         self.people_voted.clear()
         if self.playlist.current is None:
-            await self.play_music(link=self.database.get_random_music(), ctx=self.music_server)
+            await self.play_music(link=self.database.get_random_music())
         else:
-            await self.play_music(ctx, self.playlist.pop())
+            await self.play_music(link=self.playlist.pop())
 
     @commands.command(name="peter", pass_context=True)
     async def peter(self, ctx):
         if not global_methods.is_admin(ctx.message.author):
             await self.bot.say("You're not a big boy")
             return None
-        await self.play_music(ctx, self.playlist.peter())
+        await self.play_music(link=self.playlist.peter())
 
     @commands.command(name="timeleft", pass_context=True)
     async def time_left(self, ctx):
